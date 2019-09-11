@@ -1,0 +1,23 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  labels:
+    app: validation-webhook
+    deployment: validation-webhook
+  name: validation-webhook
+  namespace: validation-webhook
+spec:
+  replicas: 1
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: validation-webhook
+    spec:
+      containers:
+      - image: quay.io/rogbas/validation-webhook:latest
+        imagePullPolicy: Always
+        name: validation-webhook
+        ports:
+        - containerPort: 8080
+      restartPolicy: Always
